@@ -1,3 +1,4 @@
+const connection = require('../database/connection')
 const database = require('../database/connection')
 class AlunoController{
     novoAluno(req, res){
@@ -11,6 +12,13 @@ class AlunoController{
             res.json({menssage: "Aluno Cadastrado com sucesso"})
         } )       
     }
+
+    async pesquisarAluno(req, res){
+        const [rows] = await database.query('SELECT * FROM ALUNO');
+        return res.status(200).json({alunos:rows})
+    }
+
+    
 
    
 }
